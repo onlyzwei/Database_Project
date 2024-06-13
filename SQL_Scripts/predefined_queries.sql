@@ -1,0 +1,1 @@
+-- Adicione as queries predefinidas aqui

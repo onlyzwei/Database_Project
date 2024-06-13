@@ -1,0 +1,51 @@
+# Relatório do Projeto - Sistema de Gerenciamento Escolar
+
+## Modelo Conceitual
+O modelo conceitual utilizado para este projeto é o seguinte:
+![Modelo Conceitual](../Conceptual_Model/model_conceptual_escola.png)
+
+## Mapeamento para o Modelo Relacional
+O mapeamento do modelo conceitual para o modelo relacional foi realizado conforme descrito abaixo:
+
+- **Cidade**
+  - Código (INT, PK)
+  - Nome (VARCHAR(100))
+
+- **Pessoa**
+  - Código (INT, PK)
+  - Nome (VARCHAR(100))
+  - Telefone (VARCHAR(15))
+  - Código_Cidade (INT, FK)
+
+- **Escola**
+  - Código (INT, PK)
+  - Nome (VARCHAR(100))
+  - Código_Diretor (INT, FK)
+
+Outras tabelas foram mapeadas de maneira similar, respeitando as relações entre entidades conforme o modelo conceitual.
+
+## Scripts SQL
+### create_schema.sql
+Este script cria o esquema do banco de dados conforme o modelo relacional.
+
+```sql
+CREATE TABLE Cidade (
+    Codigo INT PRIMARY KEY,
+    Nome VARCHAR(100)
+);
+
+CREATE TABLE Pessoa (
+    Codigo INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Telefone VARCHAR(15),
+    Codigo_Cidade INT,
+    FOREIGN KEY (Codigo_Cidade) REFERENCES Cidade(Codigo)
+);
+
+CREATE TABLE Escola (
+    Codigo INT PRIMARY KEY,
+    Nome VARCHAR(100),
+    Codigo_Diretor INT,
+    FOREIGN KEY (Codigo_Diretor) REFERENCES Pessoa(Codigo)
+);
+-- Adicionar as demais tabelas e relações aqui
