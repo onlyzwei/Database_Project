@@ -4,85 +4,84 @@ O modelo conceitual utilizado: ../Conceptual_Model/model_conceptual_escola.png
 ## Mapeamento Logico
 
 -> Cidade
-  - Codigo (INT)
-  - Nome (VARCHAR(50))
+  - Codigo (INT) NOT NULL
+  - Nome (VARCHAR(50)) NOT NULL
 
   PRIMARY KEY (Codigo)
 
 -> Pessoa
-  - Codigo (INT)
-  - Nome (VARCHAR(50))
-  - Telefone (VARCHAR(15))
-  - Codigo_Cidade (INT)
+  - Codigo (INT) NOT NULL
+  - Nome (VARCHAR(50)) NOT NULL
+  - Telefone (VARCHAR(15)) NOT NULL
+  - Codigo_Cidade (INT) NOT NULL
   
   PRIMARY KEY (Codigo)
-  Codigo_Cidade REFERENCES Cidade(Codigo)
+  FOREIGN KEY (Codigo_Cidade) REFERENCES Cidade(Codigo)
 
 -> Escola
-  - Codigo (INT)
-  - Nome (VARCHAR(50))
-  - Codigo_Diretor (INT)
-  - Codigo_Cidade (INT)
+  - Codigo (INT) NOT NULL
+  - Nome (VARCHAR(50)) NOT NULL
+  - Codigo_Diretor (INT) NOT NULL
+  - Codigo_Cidade (INT) NOT NULL
 
   PRIMARY KEY (Codigo)
-  Codigo_Diretor REFERENCES Professor(Codigo)
-  Codigo_Cidade REFERENCES Cidade(Codigo)
+  FOREIGN KEY (Codigo_Diretor) REFERENCES Professor(Codigo)
+  FOREIGN KEY (Codigo_Cidade) REFERENCES Cidade(Codigo)
 
 -> Professor
-  - Codigo_Pessoa (INT)
-  - RG (VARCHAR(20))
-  - CPF (VARCHAR(20))
-  - Titulacao (VARCHAR(50))
+  - Codigo (INT) NOT NULL
+  - RG (VARCHAR(20)) NOT NULL
+  - CPF (VARCHAR(20)) NOT NULL
+  - Titulacao (VARCHAR(50)) NOT NULL
 
-  PRIMARY KEY (Codigo_Pessoa)
-  Codigo_Pessoa REFERENCES Pessoa(Codigo)
+  PRIMARY KEY (Codigo)
+  FOREIGN KEY (Codigo) REFERENCES Pessoa(Codigo)
 
 -> Disciplina
-  - Codigo (INT)
-  - Nome (VARCHAR(50))
+  - Codigo (INT) NOT NULL
+  - Nome (VARCHAR(50)) NOT NULL
 
   PRIMARY KEY (Codigo)
 
 -> Aluno
-  - Codigo_Pessoa (INT)
-  - Matricula (INT)
-  - Data_Nascimento (DATE)
-  - Codigo_Turma (INT)
+  - Codigo (INT) NOT NULL
+  - Matricula_Aluno (INT) NOT NULL
+  - Data_Nascimento (DATE) NOT NULL
+  - Codigo_Turma (INT) NOT NULL
   
-  PRIMARY KEY (Codigo_Pessoa)
-  Codigo_Pessoa REFERENCES Pessoa(Codigo)
-  Codigo_Turma REFERENCES Turma(Codigo)
+  PRIMARY KEY (Codigo)
+  FOREIGN KEY (Codigo) REFERENCES Pessoa(Codigo)
+  FOREIGN KEY (Codigo_Turma) REFERENCES Turma(Codigo)
 
 -> Turma
-  - Codigo (INT)
-  - Nome (VARCHAR(50))
-  - Codigo_Escola (INT)
+  - Codigo (INT) NOT NULL
+  - Nome (VARCHAR(50)) NOT NULL
+  - Codigo_Escola (INT) NOT NULL
 
   PRIMARY KEY (Codigo)
-  Codigo_Escola REFERENCES Escola(Codigo)
+  FOREIGN KEY (Codigo_Escola) REFERENCES Escola(Codigo)
 
 -> Contato
-  - Nome (VARCHAR(50))
-  - Telefone (VARCHAR(15))
-  - Codigo_Aluno (INT)
+  - Nome (VARCHAR(50)) NOT NULL
+  - Telefone (VARCHAR(15)) NOT NULL
+  - Codigo_Aluno (INT) NOT NULL
   
   PRIMARY KEY (Nome)
-  Codigo_Aluno REFERENCES Aluno(Matricula)
+  FOREIGN KEY (Codigo_Aluno) REFERENCES Aluno(Codigo)
 
 -> Ministra
-  - Codigo_Professor (INT)
-  - Codigo_Disciplina (INT)
+  - Codigo_Professor (INT) NOT NULL
+  - Codigo_Disciplina (INT) NOT NULL
 
   PRIMARY KEY (Codigo_Professor, Codigo_Disciplina)
-  Codigo_Professor REFERENCES Professor(Codigo)
-  Codigo_Disciplina REFERENCES Disciplina(Codigo)
+  FOREIGN KEY (Codigo_Professor) REFERENCES Professor(Codigo)
+  FOREIGN KEY (Codigo_Disciplina) REFERENCES Disciplina(Codigo)
 
--> Dar_Aula // É a relaçao entre ministra e turma
-  - Codigo_Professor (INT)
-  - Codigo_Disciplina (INT)
-  - Codigo_Turma (INT)
+-> Dar_Aula
+  - Codigo_Professor (INT) NOT NULL
+  - Codigo_Disciplina (INT) NOT NULL
+  - Codigo_Turma (INT) NOT NULL
 
   PRIMARY KEY (Codigo_Professor, Codigo_Disciplina, Codigo_Turma)
-  Codigo_Professor, Codigo_Disciplina REFERENCES Ministra(Codigo_Professor, Codigo_Disciplina)
-  Codigo_Turma REFERENCES Turma(Codigo)
-
+  FOREIGN KEY (Codigo_Professor, Codigo_Disciplina) REFERENCES Ministra(Codigo_Professor, Codigo_Disciplina)
+  FOREIGN KEY (Codigo_Turma) REFERENCES Turma(Codigo)
