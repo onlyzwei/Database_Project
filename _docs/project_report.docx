@@ -66,7 +66,7 @@ O modelo conceitual utilizado: ../Conceptual_Model/model_conceptual_escola.png
   - Telefone (VARCHAR(15)) NOT NULL
   - Codigo_Aluno (INT) NOT NULL
   
-  PRIMARY KEY (Nome)
+  PRIMARY KEY (Nome, Codigo_Aluno)
   FOREIGN KEY (Codigo_Aluno) REFERENCES Aluno(Codigo)
 
 -> Ministra
