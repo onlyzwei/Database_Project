@@ -57,8 +57,8 @@ GROUP BY
 
 SELECT 
     e.nome AS nome_escola,
-    -- COALESCE(COUNT(DISTINCT a.codigo), 0) AS numero_alunos,
-    -- COALESCE(COUNT(DISTINCT da.codigo_professor), 0) AS numero_professores,
+    -- COALESCE(COUNT(DISTINCT a.codigo), 0) AS numero_alunos, (teste para verificar se a contagem de alunos está correta)
+    -- COALESCE(COUNT(DISTINCT da.codigo_professor), 0) AS numero_professores, (teste para verificar se a contagem de professores está correta)
     COALESCE(COUNT(DISTINCT a.codigo) / NULLIF(COUNT(DISTINCT da.codigo_professor), 0), 0) AS razao_alunos_professores
 FROM 
     escola e
