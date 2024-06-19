@@ -21,7 +21,10 @@ INSERT INTO pessoa (nome, telefone, codigo_cidade) VALUES
     -- BA
     ('Ana Pereira', '(71) 9666-5555', 4), -- diretora
     -- DF
-    ('Pedro Santos', '(61) 9555-4444', 5); -- professor
+    ('Pedro Santos', '(61) 9555-4444', 5), -- professor
+    
+    -- adicionados recentements nao organizados por questoes de dor de cabeca
+	('Por do sol', '(21) 5432-3232', 2); -- Aluno 10
 
 INSERT INTO professor (codigo, rg, cpf, titulacao) VALUES
     (5, '12345678-9', '987654321-00', 'Doutorado'), -- professor
@@ -50,6 +53,8 @@ INSERT INTO aluno (codigo, matricula_aluno, data_nascimento, codigo_turma) VALUE
         -- turma 1A
     (3, 1001, '2010-03-24', 1),
     (6, 1002, '2010-04-24', 1),
+    (10, 1003, '2010-05-24', 1),
+    
     -- Alunos Escola VIDA
         -- turma 1A
     (1, 1003, '2010-09-10', 2),
