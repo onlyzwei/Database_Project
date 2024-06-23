@@ -33,6 +33,38 @@ LEFT JOIN contato c ON a.codigo = c.codigo_aluno
 WHERE c.codigo_aluno IS NULL;
 
 
+-- 4) Listar o código, nome e titulação dos professores que ministram aulas para pelo menos
+--    três turmas diferentes.
+
+SELECT
+    prof.codigo AS codigo_professor, p.nome AS nome_professor, prof.titulacao AS titulacao_professor
+FROM
+    professor prof
+JOIN
+    pessoa p ON prof.codigo = p.codigo
+WHERE
+    prof.codigo IN (SELECT prof.codigo
+                    FROM professor prof
+                    LEFT JOIN dar_aula da ON prof.codigo = da.codigo_professor
+                    GROUP BY prof.codigo
+                    HAVING COUNT(DISTINCT da.codigo_turma) >= 3);
+
+
+-- 5) Listar por disciplina o número de professores que podem ministrá-la e quantos 
+--    efetivamente ministram a mesma para uma turma.
+
+SELECT
+    m.codigo_disciplina,
+    COUNT(DISTINCT da.codigo_professor) AS professores_efetivos,
+    COUNT(DISTINCT m.codigo_professor) AS possiveis_professores
+FROM
+    ministra m
+LEFT JOIN
+    dar_aula da ON m.codigo_professor = da.codigo_professor
+GROUP BY
+    m.codigo_disciplina;
+
+
 -- 7) Listar por escola o número de turmas e o número de professores que ministram alguma 
 --    disciplina para turmas da escola em questão.
 
@@ -71,6 +103,7 @@ LEFT JOIN
 GROUP BY 
     e.codigo, e.nome;
 
+
 -- 9)Listar todos os contatos dos alunos informando a matrícula e nome do aluno, nome e
 --   telefone do contato, ordenado por matrícula do aluno e nome do contato.
 
@@ -83,3 +116,15 @@ JOIN
 	contato c ON a.codigo = c.codigo_aluno
 ORDER BY
 	a.matricula_aluno, nome_contato
+
+
+-- 10) Listar todos os professores que ministram disciplinas para apenas uma turma.
+
+SELECT
+    da.codigo_professor
+FROM
+    dar_aula da
+GROUP BY
+    da.codigo_professor
+HAVING 
+    COUNT(DISTINCT da.codigo_turma) == 1;
