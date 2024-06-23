@@ -5,42 +5,36 @@
 <table>
   <tr>
     <td align="center">
-      <a href="#">
         <sub>
           <b>Carolina Lucero</b>
         </sub>
       </a>
     </td>
   <td align="center"> 
-      <a href="#">
         <sub>
           <b>Frederico Antunes</b>
         </sub>
       </a>
     </td>
     <td align="center">
-      <a href="#">
         <sub>
           <b>Gabriel Gomes</b>
         </sub>
       </a>
     </td>
     <td align="center">
-      <a href="#">
         <sub>
           <b>Lucas Miranda</b>
         </sub>
       </a>
     </td>
     <td align="center">
-      <a href="#">
         <sub>
           <b>Pedro Umpierre</b>
         </sub>
       </a>
     </td>
     <td align="center">
-      <a href="#">
         <sub>
           <b>Ramon Santos</b>
         </sub>
