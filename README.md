@@ -49,7 +49,7 @@ Este repositório contém os arquivos e scripts necessários para o desenvolvime
 ## Estrutura do Diretório
 - **Conceptual_Model/**: Contém a imagem do modelo conceitual.
 - **SQL_Scripts/**: Contém scripts SQL para criação de esquema, população de dados e consultas pré-definidas.
-- **Documentation/**: Contém o relatório do projeto e documentação adicional.
+- **_docs/**: Contém um esboço do mapeamento do nível conceitual para o lógico.
 
 ## Instruções de Uso
 1. Clone o repositório.
