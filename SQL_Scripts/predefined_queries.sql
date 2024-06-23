@@ -70,3 +70,16 @@ LEFT JOIN
     dar_aula da ON t.codigo = da.codigo_turma
 GROUP BY 
     e.codigo, e.nome;
+
+-- 9)Listar todos os contatos dos alunos informando a matrícula e nome do aluno, nome e
+--   telefone do contato, ordenado por matrícula do aluno e nome do contato.
+
+SELECT a.matricula_aluno, p.nome, c.nome AS nome_contato, c.telefone AS telefone_contato
+FROM
+	pessoa p
+JOIN
+	aluno a ON p.codigo = a.codigo
+JOIN
+	contato c ON a.codigo = c.codigo_aluno
+ORDER BY
+	a.matricula_aluno, nome_contato
