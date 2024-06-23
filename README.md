@@ -17,3 +17,57 @@ Este repositório contém os arquivos e scripts necessários para o desenvolvime
 
 ## Contribuição
 Para contribuir, faça um fork do repositório, crie um branch para suas alterações e envie um pull request.
+
+
+<img src="./assets/banner.png"/>
+
+# Escalonador de Processos
+
+### Integrantes:
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <sub>
+          <b>Carolina Lucero</b>
+        </sub>
+      </a>
+    </td>
+  <td align="center"> 
+      <a href="#">
+        <sub>
+          <b>Frederico Antunes</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <sub>
+          <b>Gabriel Gomes</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <sub>
+          <b>Lucas Miranda</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <sub>
+          <b>Pedro Umpierre</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <sub>
+          <b>Ramon Santos</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
