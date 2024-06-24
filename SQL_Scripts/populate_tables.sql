@@ -29,7 +29,10 @@ INSERT INTO pessoa (nome, telefone, codigo_cidade) VALUES
     ('Marcia Bores', '(13) 2938-2834', 1), -- professor
     ('Joaquin Phoenix', '(22) 9283-0493', 2), -- professor
     ('Monica Ferreira', '(11) 9384-2823', 1), -- professor
-    ('Lucas de Andrade', '(21) 9247-3848', 2); -- professor
+    ('Lucas de Andrade', '(21) 9247-3848', 2), -- professor
+    ('Atharv Pedro', '(11) 3947-3948', 2), -- aluno 16
+    ('Adriyel Baguncinha', '(21) 3948-1923', 2), -- aluno 17
+    ('Mariana Soares', '(22) 2394-1934', 2); -- aluno 18
 
 INSERT INTO professor (codigo, rg, cpf, titulacao) VALUES
     (5, '12345678-9', '987654321-00', 'Doutorado'), -- professor
@@ -65,9 +68,9 @@ INSERT INTO aluno (codigo, matricula_aluno, data_nascimento, codigo_turma) VALUE
     (3, 1001, '2010-03-24', 1),
     (6, 1002, '2010-04-24', 1),
     (10, 1003, '2010-05-24', 1),
-    (11, 1004, '2011-03-12', 1),
-    (12, 1005, '2012-9-20', 1),
-    (13, 1006, '2011-2-09', 1),
+    (16, 1004, '2011-03-12', 1),
+    (17, 1005, '2012-9-20', 1),
+    (18, 1006, '2011-2-09', 1),
     
     -- Alunos Escola VIDA
         -- turma 1A

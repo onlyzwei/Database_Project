@@ -81,12 +81,13 @@ SELECT pessoa.nome, escola.nome
 FROM pessoa, professor, escola 
 WHERE pessoa.codigo = professor.codigo AND
 escola.codigo_diretor = professor.codigo AND 
-pessoa.codigo_cidade <> escola.codigo_cidade
+pessoa.codigo_cidade <> escola.codigo_cidade;
 
 -- 7) Listar por escola o número de turmas e o número de professores que ministram alguma 
 --    disciplina para turmas da escola em questão.
 
-SELECT 
+SELECT
+	e.codigo AS codigo_escola,
     e.nome AS nome_escola,
     COUNT(DISTINCT t.codigo) AS numero_turmas,
     COUNT(DISTINCT da.codigo_professor) AS numero_professores
@@ -133,7 +134,7 @@ JOIN
 JOIN
 	contato c ON a.codigo = c.codigo_aluno
 ORDER BY
-	a.matricula_aluno, nome_contato
+	a.matricula_aluno, nome_contato;
 
 
 -- 10) Listar todos os professores que ministram disciplinas para apenas uma turma.
@@ -145,25 +146,19 @@ FROM
 GROUP BY
     da.codigo_professor
 HAVING 
-    COUNT(DISTINCT da.codigo_turma) == 1;
+    COUNT(DISTINCT da.codigo_turma) = 1;
     
     
 -- 11) Alterar todos os contatos vinculados a um aluno A para um aluno B.
-
-
-SET @codigo_do_aluno_alterado = 1;
+SET @codigo_do_aluno_alterado = 1; -- Essa variável representa o código do aluno B para o qual os contatos serão transferidos.
 
 update contato
 set codigo_aluno = @codigo_do_aluno_alterado
-where codigo_aluno = 3 and @codigo_do_aluno_alterado in
-(select codigo
-from aluno)
-
+where 
+	codigo_aluno = 3 and @codigo_do_aluno_alterado in (select codigo from aluno); -- troca os codigos dos alunos apontados por contato e 
+																				  -- verifica se o codigo da variavel existe na tabela aluno
 
 -- consultas para verificação
-
-select *
-from aluno
 
 select * 
 from contato
