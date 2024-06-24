@@ -163,6 +163,25 @@ where
 select * 
 from contato
 
+-- 12)Forneça um conjunto de instruções SQL para remover da base de dados um professor
+-- qualquer. Caso o professor seja diretor de uma escola um novo diretor deverá ser
+-- definido.
+
+UPDATE escola 
+SET codigo_diretor = 15
+WHERE codigo_diretor = 4;
+
+DELETE FROM dar_aula 
+WHERE codigo_professor = 4;
+
+DELETE FROM ministra 
+WHERE codigo_professor = 4;
+
+DELETE FROM professor 
+WHERE codigo = 4;
+
+DELETE FROM pessoa 
+WHERE codigo = 4;
 
 -- 13) Considerando que um Professor P1 precisou sair de licença médica, substituí-lo por
 -- outro Professor P2 em todas as turmas onde P1 ministra disciplinas. Importante: Caso o
