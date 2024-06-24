@@ -33,6 +33,15 @@ LEFT JOIN contato c ON a.codigo = c.codigo_aluno
 WHERE c.codigo_aluno IS NULL;
 
 
+-- 3) Listar o código e nome das turmas com mais de 5 alunos.
+
+SELECT t.codigo, t.nome
+FROM turma t
+JOIN aluno a ON t.codigo = a.codigo_turma
+GROUP BY t.codigo, t.nome
+HAVING COUNT(a.codigo) > 5;
+
+
 -- 4) Listar o código, nome e titulação dos professores que ministram aulas para pelo menos
 --    três turmas diferentes.
 
@@ -128,3 +137,50 @@ GROUP BY
     da.codigo_professor
 HAVING 
     COUNT(DISTINCT da.codigo_turma) == 1;
+
+
+-- 13) Considerando que um Professor P1 precisou sair de licença médica, substituí-lo por
+-- outro Professor P2 em todas as turmas onde P1 ministra disciplinas. Importante: Caso o
+-- Professor P2 não esteja vinculado a todas as disciplinas ministradas pelo Professor P1,
+-- inclua a informação de que o Professor P2 é capaz de ministrar todas as disciplinas
+-- ministradas pelo Professor P1.
+
+INSERT INTO ministra (codigo_professor, codigo_disciplina)
+SELECT 
+    11 AS codigo_professor, 
+    m.codigo_disciplina 
+FROM ministra m
+JOIN professor p1 ON p1.codigo = m.codigo_professor
+WHERE p1.codigo = 5
+    AND NOT EXISTS (
+        SELECT 1 
+        FROM ministra m2 
+        WHERE m2.codigo_professor = 11
+        AND m2.codigo_disciplina = m.codigo_disciplina
+    );
+
+UPDATE dar_aula AS da
+JOIN ministra AS m ON da.codigo_professor = m.codigo_professor AND da.codigo_disciplina = m.codigo_disciplina
+SET da.codigo_professor = 11
+WHERE m.codigo_professor = 5;
+
+DELETE FROM ministra
+WHERE codigo_professor = 11
+AND codigo_disciplina IN (
+    SELECT codigo_disciplina
+    FROM (
+        SELECT codigo_disciplina, COUNT(*) AS cnt
+        FROM ministra
+        WHERE codigo_professor = 11
+        GROUP BY codigo_disciplina
+        HAVING cnt > 1
+    ) AS dups
+);
+
+SELECT * 
+FROM ministra 
+WHERE codigo_professor = 11;
+
+SELECT * 
+FROM dar_aula 
+WHERE codigo_professor = 11;

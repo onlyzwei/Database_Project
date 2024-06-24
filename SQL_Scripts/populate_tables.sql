@@ -55,9 +55,9 @@ INSERT INTO disciplina (nome) VALUES
 INSERT INTO turma (nome, codigo_escola) VALUES
     -- Escola RIO
     ('Turma 1A', 1),
-    ('Turma 2A', 2),
+    ('Turma 2A', 1),
 	-- Escola VIDA
-    ('Turma 1A', 3);
+    ('Turma 1A', 2);
 
 INSERT INTO aluno (codigo, matricula_aluno, data_nascimento, codigo_turma) VALUES
     -- Alunos Escola RIO
@@ -65,6 +65,9 @@ INSERT INTO aluno (codigo, matricula_aluno, data_nascimento, codigo_turma) VALUE
     (3, 1001, '2010-03-24', 1),
     (6, 1002, '2010-04-24', 1),
     (10, 1003, '2010-05-24', 1),
+    (11, 1004, '2011-03-12', 1),
+    (12, 1005, '2012-9-20', 1),
+    (13, 1006, '2011-2-09', 1),
     
     -- Alunos Escola VIDA
         -- turma 1A
