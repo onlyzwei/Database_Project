@@ -74,6 +74,15 @@ GROUP BY
     m.codigo_disciplina;
 
 
+-- 6) Listar o nome da escola e o nome dos diretores de escola que residem em cidades
+--    diferentes da cidade da escola.
+
+SELECT pessoa.nome, escola.nome 
+FROM pessoa, professor, escola 
+WHERE pessoa.codigo = professor.codigo AND
+escola.codigo_diretor = professor.codigo AND 
+pessoa.codigo_cidade <> escola.codigo_cidade
+
 -- 7) Listar por escola o número de turmas e o número de professores que ministram alguma 
 --    disciplina para turmas da escola em questão.
 
@@ -137,6 +146,27 @@ GROUP BY
     da.codigo_professor
 HAVING 
     COUNT(DISTINCT da.codigo_turma) == 1;
+    
+    
+-- 11) Alterar todos os contatos vinculados a um aluno A para um aluno B.
+
+
+SET @codigo_do_aluno_alterado = 1;
+
+update contato
+set codigo_aluno = @codigo_do_aluno_alterado
+where codigo_aluno = 3 and @codigo_do_aluno_alterado in
+(select codigo
+from aluno)
+
+
+-- consultas para verificação
+
+select *
+from aluno
+
+select * 
+from contato
 
 
 -- 13) Considerando que um Professor P1 precisou sair de licença médica, substituí-lo por
